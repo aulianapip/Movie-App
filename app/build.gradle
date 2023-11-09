@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
@@ -36,9 +36,12 @@ android {
     viewBinding {
         enabled true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.3'
+    }
 }
 
 dependencies {
-
+    implementation project(":core")
 
 }
