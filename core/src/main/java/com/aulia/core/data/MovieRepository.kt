@@ -6,6 +6,7 @@ import com.aulia.core.data.source.remote.response.MovieResponse
 import com.aulia.core.domain.model.Movie
 import com.aulia.core.domain.repository.ITMovieRespository
 import com.aulia.core.utils.AppExecutors
+import com.aulia.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -37,7 +38,7 @@ class MovieRepository @Inject constructor(
 
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                TODO("Not yet implemented")
+                val movieList = DataMapper.mapResponsesToEntities(data)
             }
         }.asFlow()
 
