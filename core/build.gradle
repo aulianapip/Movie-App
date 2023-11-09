@@ -13,7 +13,7 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 34
-        buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNzQ0OGQyYTMzNWQxMjYwNDgxNDI3MDM4YWJmNGI1ZCIsInN1YiI6IjU4NGU0OThhYzNhMzY4MzIyYTAwOGE5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Z-wQ76oHx43XUFjxbHExQAoxv2eJRou62oTm3i2Rtjk"')
+        buildConfigField("String", "API_KEY", '"37448d2a335d1260481427038abf4b5d"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
