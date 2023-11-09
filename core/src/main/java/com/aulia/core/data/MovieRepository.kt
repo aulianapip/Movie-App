@@ -44,6 +44,7 @@ class MovieRepository @Inject constructor(
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
                 val movieList = DataMapper.mapResponsesToEntities(data)
+                localDataSource.insertMovie(movieList)
             }
         }.asFlow()
 
