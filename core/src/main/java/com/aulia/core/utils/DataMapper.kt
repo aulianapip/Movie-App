@@ -2,6 +2,7 @@ package com.aulia.core.utils
 
 import com.aulia.core.data.source.local.entity.MovieEntity
 import com.aulia.core.data.source.remote.response.MovieResponse
+import com.aulia.core.domain.model.Movie
 
 /**
  * @author Aulianapip
@@ -15,15 +16,40 @@ object DataMapper {
 
             val movie = MovieEntity(
                 movieId = movieResponse.id,
-                title = movieResponse.originalTitle,
+                title = movieResponse.title,
                 voteAverage = movieResponse.voteAverage,
                 releaseDate = movieResponse.releaseDate,
                 overview = movieResponse.overview,
                 posterPath = movieResponse.posterPath,
+                isFavorite = false
             )
             movieList.add(movie)
         }
         return movieList
     }
+
+    fun mapEntitiesToDomain(input: List<MovieEntity>) : List<Movie> =
+        input.map {
+            Movie(
+                id = it.movieId,
+                title = it.title,
+                voteAverage = it.voteAverage,
+                releaseDate = it.releaseDate,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                isFavorite = it.isFavorite
+            )
+        }
+
+    fun mapDomainToEntity(input: Movie) =
+        MovieEntity(
+            movieId = input.id,
+            title = input.title,
+            voteAverage = input.voteAverage,
+            releaseDate = input.releaseDate,
+            overview = input.overview,
+            posterPath = input.posterPath,
+            isFavorite = input.isFavorite
+        )
 
 }
