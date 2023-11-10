@@ -16,4 +16,5 @@ interface ITMovieRespository {
     fun getFavoriteMovie(): Flow<List<Movie>>
 
     fun setFavoriteMovie(movie: Movie, state: Boolean)
+    fun searchMovie(value: String): Flow<List<Movie>>
 }

@@ -13,4 +13,5 @@ interface MovieUseCase {
     fun getPopularMovie(): Flow<Resource<List<Movie>>>
     fun getFavoriteMovie(): Flow<List<Movie>>
     fun setFavoriteMovie(movie: Movie, state: Boolean)
+    fun searchMovie(value: String): Flow<List<Movie>>
 }

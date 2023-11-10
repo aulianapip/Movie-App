@@ -2,6 +2,7 @@ package com.aulia.core.domain.usecase
 
 import com.aulia.core.domain.model.Movie
 import com.aulia.core.domain.repository.ITMovieRespository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -16,5 +17,6 @@ class MovieInteractor @Inject constructor(private val movieRepository: ITMovieRe
     override fun getFavoriteMovie() = movieRepository.getFavoriteMovie()
 
     override fun setFavoriteMovie(movie: Movie, state: Boolean) = movieRepository.setFavoriteMovie(movie, state)
+    override fun searchMovie(value: String): Flow<List<Movie>> = movieRepository.searchMovie(value)
 
 }

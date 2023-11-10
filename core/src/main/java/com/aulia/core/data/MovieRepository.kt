@@ -59,4 +59,10 @@ class MovieRepository @Inject constructor(
         appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourismEntity, state) }
     }
 
+    override fun searchMovie(value: String): Flow<List<Movie>> {
+        return localDataSource.searchMovie(value).map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
+    }
+
 }
