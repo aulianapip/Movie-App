@@ -55,24 +55,18 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
 
-            homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
-                if (movie != null) {
-                    when (movie) {
-                        is com.aulia.core.data.Resource.Loading -> binding.progressBar.visibility =
-                            View.VISIBLE
-
-                        is com.aulia.core.data.Resource.Success -> {
-                            binding.progressBar.visibility = View.GONE
-                            movieAdapter.setData(movie.data)
-                        }
-
-                        is com.aulia.core.data.Resource.Error -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text =
-                                movie.message ?: getString(R.string.something_wrong)
-                        }
+            homeViewModel.movieResult.observe(viewLifecycleOwner) { movie ->
+                if (searchView.query.toString() == "") {
+                    binding.viewError.root.visibility = View.GONE
+                    observerMovie()
+                } else {
+                    if (movie.isNullOrEmpty()) {
+                        binding.viewError.root.visibility = View.VISIBLE
+                        binding.viewError.tvError.text = getString(R.string.no_data)
+                    } else {
+                        binding.viewError.root.visibility = View.GONE
                     }
+                    movieAdapter.setData(movie)
                 }
             }
 
@@ -81,6 +75,7 @@ class HomeFragment : Fragment() {
                 setHasFixedSize(true)
                 adapter = movieAdapter
             }
+            observerMovie()
         }
 
 
@@ -109,9 +104,9 @@ class HomeFragment : Fragment() {
 
                                 newText.let {
                                     if (newText == "" || newText.isEmpty()) {
-
+                                        observerMovie()
                                     } else {
-
+                                        homeViewModel.setSearchQuery(it)
                                     }
                                 }
                                 return true
@@ -120,7 +115,8 @@ class HomeFragment : Fragment() {
                         true
                     }
                     R.id.setting_menu -> {
-                        // todo menu2
+                        val intent = Intent(activity, SettingActivity::class.java)
+                        startActivity(intent)
                         true
                     }
                     else -> false
@@ -131,7 +127,26 @@ class HomeFragment : Fragment() {
 
 
 
+    private fun observerMovie() {
+        homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
+            if (movie != null) {
+                when (movie) {
+                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        movieAdapter.setData(movie.data)
+                        binding.viewError.root.visibility = View.GONE
+                    }
 
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.viewError.root.visibility = View.VISIBLE
+                        binding.viewError.tvError.text = getString(R.string.no_data)
+                    }
+                }
+            }
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
