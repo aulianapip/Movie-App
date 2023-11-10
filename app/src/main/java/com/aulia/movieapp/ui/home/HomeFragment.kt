@@ -24,6 +24,7 @@ import com.aulia.core.ui.MovieAdapter
 import com.aulia.movieapp.R
 import com.aulia.movieapp.databinding.FragmentHomeBinding
 import com.aulia.movieapp.ui.detail.DetailMovieActivity
+import com.aulia.movieapp.ui.setting.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

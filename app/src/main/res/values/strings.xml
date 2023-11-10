@@ -17,4 +17,6 @@
     <string name="release">Release</string>
     <string name="language">Language</string>
     <string name="rating">Rating</string>
+
+    <string name="dark_mode">Dark Mode</string>
 </resources>
