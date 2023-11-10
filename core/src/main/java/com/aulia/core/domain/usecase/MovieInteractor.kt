@@ -1,5 +1,6 @@
 package com.aulia.core.domain.usecase
 
+import com.aulia.core.domain.model.Movie
 import com.aulia.core.domain.repository.ITMovieRespository
 import javax.inject.Inject
 
@@ -12,5 +13,8 @@ class MovieInteractor @Inject constructor(private val movieRepository: ITMovieRe
 
     override fun getPopularMovie() = movieRepository.getPopularMovie()
 
+    override fun getFavoriteMovie() = movieRepository.getFavoriteMovie()
+
+    override fun setFavoriteMovie(movie: Movie, state: Boolean) = movieRepository.setFavoriteMovie(movie, state)
 
 }
