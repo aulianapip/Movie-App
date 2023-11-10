@@ -23,6 +23,7 @@ import com.aulia.core.data.Resource
 import com.aulia.core.ui.MovieAdapter
 import com.aulia.movieapp.R
 import com.aulia.movieapp.databinding.FragmentHomeBinding
+import com.aulia.movieapp.ui.detail.DetailMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +50,9 @@ class HomeFragment : Fragment() {
         if (activity != null) {
             movieAdapter = MovieAdapter()
             movieAdapter.onItemClick = { selectedData ->
-                Toast.makeText(activity, "Klik", Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, DetailMovieActivity::class.java)
+                intent.putExtra(DetailMovieActivity.EXTRA_DATA, selectedData)
+                startActivity(intent)
             }
 
             homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
