@@ -36,6 +36,12 @@ data class MovieEntity (
     @ColumnInfo(name = "posterPath")
     val posterPath: String,
 
+    @ColumnInfo(name = "backdropPath")
+    val backdropPath: String,
+
+    @ColumnInfo(name = "originalLanguage")
+    val originalLanguage: String,
+
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
 

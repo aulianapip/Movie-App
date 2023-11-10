@@ -21,6 +21,8 @@ object DataMapper {
                 releaseDate = movieResponse.releaseDate,
                 overview = movieResponse.overview,
                 posterPath = movieResponse.posterPath,
+                backdropPath = movieResponse.backdropPath,
+                originalLanguage = movieResponse.originalLanguage,
                 isFavorite = false
             )
             movieList.add(movie)
@@ -37,6 +39,8 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 overview = it.overview,
                 posterPath = it.posterPath,
+                backdropPath = it.backdropPath,
+                originalLanguage = it.originalLanguage,
                 isFavorite = it.isFavorite
             )
         }
@@ -49,6 +53,8 @@ object DataMapper {
             releaseDate = input.releaseDate,
             overview = input.overview,
             posterPath = input.posterPath,
+            backdropPath = input.backdropPath,
+            originalLanguage = input.originalLanguage,
             isFavorite = input.isFavorite
         )
 
