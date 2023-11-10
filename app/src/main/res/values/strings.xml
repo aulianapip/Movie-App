@@ -13,4 +13,8 @@
     <string name="image_description">Image</string>
     <string name="text_primary">Sample of title text</string>
     <string name="text_subtitle">Sample of subtitle text</string>
+
+    <string name="release">Release</string>
+    <string name="language">Language</string>
+    <string name="rating">Rating</string>
 </resources>

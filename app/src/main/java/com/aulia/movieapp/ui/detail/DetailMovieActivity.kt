@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.aulia.core.domain.model.Movie
+import com.aulia.core.utils.Utils.toDateFormatYear
 import com.aulia.movieapp.R
 import com.aulia.movieapp.databinding.ActivityDetailMovieBinding
 import com.bumptech.glide.Glide
@@ -33,26 +34,36 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun showDetailMovie(detailMovie: Movie?) {
         detailMovie?.let {
             supportActionBar?.title = detailMovie.title
-            binding.content.tvDetailDescription.text = detailMovie.overview
-            Glide.with(this@DetailMovieActivity)
-                .load("https://image.tmdb.org/t/p/w500${detailMovie.posterPath}")
-                .into(binding.ivDetailImage)
+            binding.content.apply {
+                tvTitle.text = detailMovie.title
+                tvOverview.text = detailMovie.overview
+                tvReleaseDate.text = detailMovie.releaseDate?.toDateFormatYear()
+                tvOriginalLanguage.text = detailMovie.originalLanguage
+                tvVoteAverage.text = detailMovie.voteAverage.toString()
+                Glide.with(this@DetailMovieActivity)
+                    .load("https://image.tmdb.org/t/p/w500${detailMovie.backdropPath}")
+                    .into(ivBackdrop)
 
-            var statusFavorite = detailMovie.isFavorite
-            setStatusFavorite(statusFavorite)
-            binding.fab.setOnClickListener {
-                statusFavorite = !statusFavorite
-                detailMovieViewModel.setFavoriteMovie(detailMovie, statusFavorite)
+                Glide.with(this@DetailMovieActivity)
+                    .load("https://image.tmdb.org/t/p/w500${detailMovie.posterPath}")
+                    .into(ivPoster)
+
+                var statusFavorite = detailMovie.isFavorite
                 setStatusFavorite(statusFavorite)
+                fab.setOnClickListener {
+                    statusFavorite = !statusFavorite
+                    detailMovieViewModel.setFavoriteMovie(detailMovie, statusFavorite)
+                    setStatusFavorite(statusFavorite)
+                }
             }
         }
     }
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
         if (statusFavorite) {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white))
+            binding.content.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white))
         } else {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
+            binding.content.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
         }
     }
 }
