@@ -48,8 +48,8 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
                     .load("https://image.tmdb.org/t/p/w500${data.posterPath}")
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imgPoster)
-                tvOverview.text = data.overview
-                tvTitle.text = data.title
+                val voteAverage: Float = data.voteAverage.toFloat() * 10
+                percentageChart.setProgress(voteAverage, true)
             }
         }
 
