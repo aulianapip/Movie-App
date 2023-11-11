@@ -132,9 +132,12 @@ class HomeFragment : Fragment() {
                 when (movie) {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
+                        with(binding.rvMovie) {
+                            adapter = movieAdapter
+                        }
                         binding.progressBar.visibility = View.GONE
-                        movieAdapter.setData(movie.data)
                         binding.viewError.root.visibility = View.GONE
+                        movieAdapter.setData(movie.data)
                     }
 
                     is Resource.Error -> {

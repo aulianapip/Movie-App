@@ -3,10 +3,12 @@ package com.aulia.core.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aulia.core.R
 import com.aulia.core.databinding.ItemListMoviesBinding
 import com.aulia.core.domain.model.Movie
+import com.aulia.core.utils.MovieDiffCallback
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import java.util.ArrayList
@@ -23,9 +25,13 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
     fun setData(newListData: List<Movie>?) {
         if (newListData == null) return
+
+        val diffCallback = MovieDiffCallback(listData, newListData)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

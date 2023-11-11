@@ -10,15 +10,9 @@
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
 
-    <string name="image_description">Image</string>
-    <string name="text_primary">Sample of title text</string>
-    <string name="text_subtitle">Sample of subtitle text</string>
-
     <string name="release">Release</string>
     <string name="language">Language</string>
     <string name="rating">Rating</string>
-
-    <string name="dark_mode">Dark Mode</string>
 
     <string name="text_setting">Ubah Bahasa</string>
 </resources>
