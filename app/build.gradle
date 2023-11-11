@@ -50,4 +50,6 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ktx"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_ktx"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 }
