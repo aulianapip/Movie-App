@@ -19,4 +19,6 @@
     <string name="rating">Rating</string>
 
     <string name="dark_mode">Dark Mode</string>
+
+    <string name="text_setting">Ubah Bahasa</string>
 </resources>
