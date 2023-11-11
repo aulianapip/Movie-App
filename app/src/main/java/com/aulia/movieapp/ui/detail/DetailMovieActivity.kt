@@ -14,10 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_DATA = "extra_data"
-    }
-
     private lateinit var binding: ActivityDetailMovieBinding
 
     private val detailMovieViewModel: DetailMovieViewModel by viewModels()
@@ -65,5 +61,9 @@ class DetailMovieActivity : AppCompatActivity() {
         } else {
             binding.content.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
         }
+    }
+
+    companion object {
+        const val EXTRA_DATA = "extra_data"
     }
 }

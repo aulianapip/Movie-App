@@ -19,7 +19,6 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
-
     suspend fun getPopularMovie(): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
             try {

@@ -1,5 +1,6 @@
 package com.aulia.core.di
 
+import com.aulia.core.BuildConfig
 import com.aulia.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -19,11 +20,17 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
+    private val baseURL = BuildConfig.BASE_URL
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
+        val loggingInterceptor = if(BuildConfig.DEBUG) {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        }else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
@@ -32,7 +39,7 @@ class NetworkModule {
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

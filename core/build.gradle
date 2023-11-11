@@ -14,6 +14,7 @@ android {
         minSdk 24
         targetSdk 34
         buildConfigField("String", "API_KEY", '"37448d2a335d1260481427038abf4b5d"')
+        buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
