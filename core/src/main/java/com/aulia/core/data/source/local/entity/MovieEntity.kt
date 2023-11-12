@@ -14,6 +14,7 @@ import kotlinx.android.parcel.Parcelize
  */
 
 
+@Parcelize
 @Entity(tableName = "movie")
 data class MovieEntity (
     @PrimaryKey
@@ -44,5 +45,5 @@ data class MovieEntity (
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
 
-)
+): Parcelable
 

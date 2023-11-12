@@ -22,8 +22,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideDatabase(@ApplicationContext context: Context): MovieDatabase {
         val passphrase: ByteArray = SQLiteDatabase.getBytes("aulianapip".toCharArray())
         val factory = SupportFactory(passphrase)

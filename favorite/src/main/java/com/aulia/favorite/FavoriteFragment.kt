@@ -66,19 +66,24 @@ class FavoriteFragment : Fragment() {
             }
 
             favoriteViewModel.moviesFavorite.observe(viewLifecycleOwner) { movie ->
-                movieAdapter.setData(movie)
-                binding.textEmpty.visibility =
-                    if (movie.isNotEmpty()) View.GONE else View.VISIBLE
-            }
 
-            with(binding.rvMovieFavorite) {
-                layoutManager = GridLayoutManager(activity, 2)
-                setHasFixedSize(true)
-                adapter = movieAdapter
+                if (movie.isNotEmpty()) {
+                    binding.textEmpty.visibility = View.GONE
+                    movieAdapter.setData(movie)
+
+                } else {
+                    binding.textEmpty.visibility = View.VISIBLE
+                    movieAdapter.setData(movie)
+                }
+
+                with(binding.rvMovieFavorite) {
+                    layoutManager = GridLayoutManager(activity, 2)
+                    setHasFixedSize(true)
+                    adapter = movieAdapter
+                }
             }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
