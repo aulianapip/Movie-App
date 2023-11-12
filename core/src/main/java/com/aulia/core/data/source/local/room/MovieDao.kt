@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM movie")
+    @Query("SELECT * FROM tbl_movie")
     fun getPopularMovie(): Flow<List<MovieEntity>>
 
-    @Query("SELECT * FROM movie where isFavorite = 1")
+    @Query("SELECT * FROM tbl_movie where isFavorite = 1")
     fun getFavoriteMovie(): Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -27,6 +27,6 @@ interface MovieDao {
 
     @Update
     fun updateFavoriteMovie(movie: MovieEntity)
-    @Query("SELECT * FROM movie WHERE  title LIKE '%' || :search || '%'")
+    @Query("SELECT * FROM tbl_movie WHERE  title LIKE '%' || :search || '%'")
     fun searchMovies(search: String): Flow<List<MovieEntity>>
 }

@@ -1,7 +1,6 @@
 package com.aulia.core.data.source.local.entity
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,36 +13,22 @@ import kotlinx.android.parcel.Parcelize
  */
 
 
-@Parcelize
-@Entity(tableName = "movie")
+@Entity(tableName = MovieEntity.TABLE_MOVIE)
 data class MovieEntity (
-    @PrimaryKey
-    @ColumnInfo(name = "movieId")
+    @PrimaryKey(autoGenerate = true)
     val movieId: Int,
-
-    @ColumnInfo(name = "title")
     val title: String,
-
-    @ColumnInfo(name = "voteAverage")
     val voteAverage: Double,
-
-    @ColumnInfo(name = "releaseDate")
     val releaseDate: String,
-
-    @ColumnInfo(name = "overview")
     val overview: String,
-
-    @ColumnInfo(name = "posterPath")
     val posterPath: String,
-
-    @ColumnInfo(name = "backdropPath")
     val backdropPath: String,
-
-    @ColumnInfo(name = "originalLanguage")
     val originalLanguage: String,
-
-    @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
 
-): Parcelable
+){
+    companion object {
+        const val TABLE_MOVIE = "tbl_movie"
+    }
+}
 

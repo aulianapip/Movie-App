@@ -25,7 +25,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
     fun setData(newListData: List<Movie>?) {
         if (newListData == null) return
-
         val diffCallback = MovieDiffCallback(listData, newListData)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
